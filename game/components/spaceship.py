@@ -16,14 +16,24 @@ class Spaceship(Sprite):
         self.rect.y = self.Y_POS
 
     def update(self, user_input):
+
+
         if user_input[pygame.K_LEFT]:
             self.move_left()
         elif user_input[pygame.K_RIGHT]:
             self.move_right()
+
+        # Verificar si la nave cruzó el límite en el eje X
+        if self.rect.left <= 0:
+            self.rect.right = SCREEN_WIDTH  # Colocar la nave al lado contrario
+        elif self.rect.right >= SCREEN_WIDTH:
+            self.rect.left = 0
         elif user_input[pygame.K_UP]:
-            self.move_up()
+            if self.rect.y > 0:
+                self.move_up()
         elif user_input[pygame.K_DOWN]:
-            self.move_down()
+            if self.rect.y < 540:
+                self.move_down()
 
     def move_left(self):
         self.rect.x -=  self.SHIP_SPEED 
