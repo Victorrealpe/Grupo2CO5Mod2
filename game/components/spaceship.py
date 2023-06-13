@@ -23,12 +23,13 @@ class Spaceship(Sprite):
         elif user_input[pygame.K_RIGHT]:
             self.move_right()
 
-        # Verificar si la nave cruzó el límite en el eje X
+        # Valida si la nave cruzó el límite en el eje X
         if self.rect.left <= 0:
             self.rect.right = SCREEN_WIDTH  # Colocar la nave al lado contrario
-        elif self.rect.right >= SCREEN_WIDTH:
+        elif self.rect.right >= SCREEN_WIDTH: # Colocar la nave al lado contrario
             self.rect.left = 0
-        elif user_input[pygame.K_UP]:
+
+        if user_input[pygame.K_UP]:
             if self.rect.y > 0:
                 self.move_up()
         elif user_input[pygame.K_DOWN]:
