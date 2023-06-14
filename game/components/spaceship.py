@@ -44,11 +44,11 @@ class Spaceship(Sprite):
             self.rect.x = 0
 
     def move_up(self):
-        if self.rect.y > SCREEN_HEIGHT // 2:
+        if self.rect.y > 0:#SCREEN_HEIGHT // 2:
             self.rect.y -= self.SHIP_SPEED
 
     def move_down(self):
-        if self.rect.y < SCREEN_HEIGHT - 70:
+        if self.rect.y < SCREEN_HEIGHT - 60:
             self.rect.y +=  self.SHIP_SPEED   
 
     def draw(self, screen):
