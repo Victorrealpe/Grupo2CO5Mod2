@@ -18,9 +18,8 @@ class Spaceship(Sprite):
         self.rect.y = self.Y_POS
         self.type = 'player'
 
-    def update(self, user_input, bullet_manager ):
-        self.shoot(bullet_manager)
-        #self.shoot(game.bullet_manager) #se ejecuta shot
+    def update(self, game, user_input ):
+        self.shoot(game.bullet_manager, user_input)
 
 
         if user_input[pygame.K_LEFT]:
@@ -65,9 +64,7 @@ class Spaceship(Sprite):
     def draw(self, screen):
         screen.blit(self.image, (self.rect.x, self.rect.y))
 
-    def shoot(self, bullet_Manager,user_input):
-        if user_input[pygame.K_DELETE]:
-            print("dispara")
-            bullet = Bullet(self)
-            bullet_Manager.add_bullet(bullet)
-            #self.shooting_time += random.randint(30, 50)
+    def shoot(self, bullet_manager,user_input):
+        if user_input[pygame.K_SPACE]:
+            bullet = Bullet(self, 'player')
+            bullet_manager.add_bullet(bullet)

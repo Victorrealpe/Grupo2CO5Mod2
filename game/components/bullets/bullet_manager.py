@@ -21,7 +21,7 @@ class BulletManager:
         for bullet in self.bullets:
             bullet.update(self.bullets)
 
-            if bullet.reac.colliderect(EnemyManager.enemies) and bullet.owner == 'player':
+            if bullet.rect.colliderect(EnemyManager.enemies) and bullet.owner == 'player':
                 self.bullets.remove(bullet)
                 for enemy in EnemyManager.enemies:
                     EnemyManager.enemies.remove(enemy)
