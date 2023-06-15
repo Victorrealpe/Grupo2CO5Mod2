@@ -18,8 +18,8 @@ class Bullet(Sprite):
         self.owner = spaceshift.type
 
     def update(self, bullets):
-        self.rect.y += self.SPEED
-        if self.rect.y>= SCREEN_HEIGHT:
+        self.rect.y += self.SPEED #cambie el + posiblemente malo
+        if self.rect.y>= SCREEN_HEIGHT or self.rect.y <= 0: #se agrega que si la bala va para arriba se borra tambien 
             bullets.remove(self)
 
     def draw (self, screen):
