@@ -64,5 +64,6 @@ class Spaceship(Sprite):
 
     def shoot(self, bullet_manager,user_input):
         if user_input[pygame.K_SPACE]:
+            print("disparo")
             bullet = Bullet(self, 'player')
             bullet_manager.add_bullet(bullet)

@@ -28,6 +28,9 @@ class Bullet(Sprite):
         if self.rect.y>= SCREEN_HEIGHT or self.rect.y <= 0: #se agrega que si la bala va para arriba se borra tambien 
             bullets.remove(self)
 
-    def draw (self, screen):
-        screen.blit(self.image,(self.rect.x, self.rect.y))
+
+
+
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
 

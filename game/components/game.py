@@ -47,10 +47,11 @@ class Game:
         self.screen.fill((255, 255, 255))
         self.draw_background()
         self.player.draw(self.screen)
+        self.bullet_manager.draw(self.screen) #disparo
         self.enemy_manager.draw(self.screen)
-        self.bullet_manager.draw(self.screen)
+        #self.bullet_manager.draw(self.screen)
         pygame.display.update()
-        #pygame.display.flip()
+  
 
     def draw_background(self):
         image = pygame.transform.scale(BG, (SCREEN_WIDTH, SCREEN_HEIGHT))

@@ -7,6 +7,7 @@ class BulletManager:
     def __init__(self):
         self.bullets = []
         self.enemy_bullets = []
+        self.enemy_manager = EnemyManager()  # Crear una instancia de EnemyManager
 
     def update (self, game):
         for bullet in self.enemy_bullets:
@@ -20,16 +21,18 @@ class BulletManager:
         #se agrega funcion de suceso de la bala nave
         for bullet in self.bullets:
             bullet.update(self.bullets)
-
-            if bullet.rect.colliderect(EnemyManager.enemies) and bullet.owner == 'player':
-                self.bullets.remove(bullet)
-                for enemy in EnemyManager.enemies:
-                    EnemyManager.enemies.remove(enemy)
-                #agregar explocion
+            for enemy in self.enemy_manager.enemies:  # Acceder a enemies desde la instancia de EnemyManager
+                if bullet.rect.colliderect(enemy.rect) and bullet.owner == 'player':
+                    self.bullets.remove(bullet)
+                    self.enemy_manager.enemies.remove(enemy)
+                    #agregar explocion
 
 
     def draw (self, screen):
         for bullet in self.enemy_bullets:
+            bullet.draw(screen)
+
+        for bullet in self.bullets:
             bullet.draw(screen)
 
     def add_bullet(self, bullet):
