@@ -86,9 +86,9 @@ class Game:
         self.menu.reset_screen_color(self.screen)
 
         if self.death_count >0:
-            self.menu.update_message("La tarea aca")
+            self.menu.update_message(f'Score: {str(self.score)}'+ f'\nDeath: {str(self.death_count)}')
         icon = pygame.transform.scale (ICON, (80,120))
-        self.screen.blit(icon, (half_screen_width - 50, half_screen_height -120))
+        self.screen.blit(icon, (half_screen_width - 50, half_screen_height -150))
 
         self.menu.draw(self.screen)
         self.menu.update(self)

@@ -16,6 +16,7 @@ class BulletManager:
                     game.score += 100
                     game.enemy_manager.enemies.remove(enemy)
                     self.bullets.remove(bullet)
+                    game.e
 
         for bullet in self.enemy_bullets:
             bullet.update(self.enemy_bullets)
