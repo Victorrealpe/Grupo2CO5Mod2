@@ -1,10 +1,10 @@
 import pygame
-from components.bullets.bullet_manager import BulletManager
-from components.enemies.enemy_manager import EnemyManager
-from components.menu import Menu
+from game.components.bullets.bullet_manager import BulletManager
+from game.components.enemies.enemy_manager import EnemyManager
+from game.components.menu import Menu
 
-from utils.constants import BG, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
-from components.spaceship import Spaceship
+from game.utils.constants import BG, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
+from game.components.spaceship import Spaceship
 
 class Game:
     def __init__(self):
@@ -62,12 +62,11 @@ class Game:
         self.screen.fill((255, 255, 255))
         self.draw_background()
         self.player.draw(self.screen)
-        self.bullet_manager.draw(self.screen) #disparo
         self.enemy_manager.draw(self.screen)
         self.bullet_manager.draw(self.screen)
         self.draw_score()  #implemenatr
         pygame.display.update()
-  
+        #pygame.display.flip()
 
     def draw_background(self):
         image = pygame.transform.scale(BG, (SCREEN_WIDTH, SCREEN_HEIGHT))
