@@ -4,7 +4,7 @@ from game.components.enemies.enemy_manager import EnemyManager
 from game.components.menu import Menu
 from game.components.power_ups.power_up_manager import PowerUpManager
 
-from game.utils.constants import BG, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
+from game.utils.constants import BG, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, SOUND_BASE
 from game.components.spaceship import Spaceship
 
 class Game:
@@ -29,19 +29,21 @@ class Game:
         self.menu = Menu ('Press Any Key to start...', self.screen)
     
     def execute (self):
+        sound_game= pygame.mixer.Sound(SOUND_BASE)
+        sound_game.set_volume(0.1) #CONTROL DE VOLUMEN
+        pygame.mixer.Sound.play(sound_game)
         self.running = True
         while self.running:
             if not self.playing:
                 self.show_menu()
-                #implementar
         pygame.display.quit()
         pygame.quit()
 
     def run(self):
         # Game loop: events - update - draw
         self.score = 0
-        self.bullet_manager.reset()  #implementar
-        self.enemy_manager.reset() #implementar
+        self.bullet_manager.reset() 
+        self.enemy_manager.reset() 
         self.playing = True
         while self.playing:
             self.events()

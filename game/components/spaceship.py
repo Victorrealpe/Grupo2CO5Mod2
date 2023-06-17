@@ -1,7 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
 from game.components.bullets.bullet import Bullet
-from game.utils.constants import DEFAULT_TYPE, SCREEN_HEIGHT, SCREEN_WIDTH, SPACESHIP
+from game.utils.constants import DEFAULT_TYPE, SCREEN_HEIGHT, SCREEN_WIDTH, SPACESHIP, SOUND_BULLET_PLAYER
 class Spaceship(Sprite):
     SHIP_WIDTH = 40
     SHIP_HEIGHT = 60
@@ -56,6 +56,10 @@ class Spaceship(Sprite):
     def shoot(self, game):
         bullet = Bullet(self)
         game.bullet_manager.add_bullet(bullet)
+        #SONIDO
+        sound_player= pygame.mixer.Sound(SOUND_BULLET_PLAYER)
+        sound_player.set_volume(0.1) #CONTROL DE VOLUMEN
+        pygame.mixer.Sound.play(sound_player)
 
     def set_image(self, size = (SHIP_WIDTH, SHIP_HEIGHT), image = SPACESHIP):
         self.image = image

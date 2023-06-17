@@ -2,6 +2,7 @@ import random
 from game.components.enemies.enemy import Enemy
 
 
+
 class EnemyManager:
     def __init__(self):
         self.enemies = []
@@ -25,7 +26,7 @@ class EnemyManager:
             move_x_for = [50, 120]
             enemy = Enemy(enemy_type, x_speed, y_speed, move_x_for)
 
-        if len(self.enemies) < 5:
+        if len(self.enemies) < 1:
             self.enemies.append(enemy)
     
     def reset(self):
