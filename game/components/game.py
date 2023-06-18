@@ -123,6 +123,9 @@ class Game:
             heart = Heart(x, y)  # Pasar las variables de clase como argumentos
             self.hearts.add(heart)
 
+    def quitar_vida(self):
+        self.spaceship.vidas
+
 
     def draw_power_up_time(self):
         if self.player.has_power_up:

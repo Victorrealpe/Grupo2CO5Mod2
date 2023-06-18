@@ -3,6 +3,7 @@ import pygame
 from game.utils.constants import SHIELD_TYPE, SOUND_MUERTE
 
 
+
 class BulletManager:
     def __init__(self):
         self.bullets = []
@@ -37,6 +38,10 @@ class BulletManager:
                     pygame.time.delay(1000)
                     break
                 self.enemy_bullets.remove(bullet)
+
+                for heart in game.hearts:
+                    game.hearts.remove(heart)
+                    break
                 
     def draw (self, screen):
         for bullet in self.bullets:
@@ -48,7 +53,7 @@ class BulletManager:
     def add_bullet(self, bullet):
         if bullet.owner == 'player' and len(self.bullets) < 3:
             self.bullets.append(bullet)
-        elif bullet.owner == 'enemy' and len(self.enemy_bullets) < 3:
+        elif bullet.owner == 'enemy' and len(self.enemy_bullets) < 1:
             self.enemy_bullets.append(bullet)
     
     def reset(self):
