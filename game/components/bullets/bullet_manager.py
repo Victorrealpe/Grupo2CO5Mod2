@@ -9,6 +9,7 @@ class BulletManager:
         self.bullets = []
         self.enemy_bullets = []
 
+
     def update (self, game):
 
         for bullet in self.bullets:
@@ -32,16 +33,19 @@ class BulletManager:
                 sound_muerte = pygame.mixer.Sound(SOUND_MUERTE)
                 #sound_muerte1.set_volume(1) #CONTROL DE VOLUMEN
                 sound_muerte.play()
-                if game.player.power_up_type != SHIELD_TYPE:    
-                    game.death_count += 1
-                    game.playing = False
-                    pygame.time.delay(1000)
-                    break
+                if game.player.power_up_type != SHIELD_TYPE:
+                    vidas_disponibles = len(game.hearts) 
+                    for heart in game.hearts:
+                        game.hearts.remove(heart)
+                        break
+                    if vidas_disponibles == 1:
+                        game.death_count += 1
+                        game.playing = False
+                        pygame.time.delay(1000)
+                        break
                 self.enemy_bullets.remove(bullet)
 
-                for heart in game.hearts:
-                    game.hearts.remove(heart)
-                    break
+
                 
     def draw (self, screen):
         for bullet in self.bullets:
