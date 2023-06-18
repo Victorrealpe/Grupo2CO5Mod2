@@ -26,9 +26,6 @@ class Game:
         self.power_up_manager = PowerUpManager()
         self.death_count = 0
         self.score = 0
-  # Lista de corazones
-
-        #self.add_vida()  # Agregar los corazones
         self.menu = Menu ('Press Any Key to start...', self.screen)
     
     def execute (self):
@@ -43,9 +40,7 @@ class Game:
         pygame.quit()
 
     def run(self):
-        # Game loop: events - update - draw
         self.score = 0
-
         self.bullet_manager.reset() 
         self.enemy_manager.reset() 
         self.playing = True
@@ -80,7 +75,6 @@ class Game:
         self.player.hearts.draw(self.screen) # DIBUJAR CORAZONES
         self.draw_power_up_time()
         pygame.display.update()
-        #pygame.display.flip()
 
     def draw_background(self):
         image = pygame.transform.scale(BG, (SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -124,10 +118,6 @@ class Game:
             y = 20  # Altura de los corazones
             heart = Heart(x, y)  
             self.hearts.add(heart)
-
-    #def reset_vidas(self):
-
-
 
     def draw_power_up_time(self):
         if self.player.has_power_up:
