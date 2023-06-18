@@ -2,6 +2,7 @@ import pygame
 from pygame.sprite import Sprite
 from game.components.bullets.bullet import Bullet
 from game.utils.constants import DEFAULT_TYPE, SCREEN_HEIGHT, SCREEN_WIDTH, SPACESHIP, SOUND_BULLET_PLAYER
+from game.components.heart import Heart
 class Spaceship(Sprite):
     SHIP_WIDTH = 40
     SHIP_HEIGHT = 60
@@ -20,6 +21,9 @@ class Spaceship(Sprite):
         self.has_power_up = False
         self.power_time_up = 0
         self.vidas = 3  #vidas
+        self.hearts = pygame.sprite.Group()
+        #self.add_vida()  # Agregar los corazones
+        
         
 
 
@@ -67,3 +71,13 @@ class Spaceship(Sprite):
     def set_image(self, size = (SHIP_WIDTH, SHIP_HEIGHT), image = SPACESHIP):
         self.image = image
         self.image = pygame.transform.scale(self.image, size)
+
+    def add_vida(self):
+        print("agregando corazones")
+        for i in range(3):
+            x = 40 + i * 40  # Espacio entre corazones
+            y = 20  # Altura de los corazones
+            heart = Heart(x, y)  
+            self.hearts.add(heart)
+
+

@@ -10,7 +10,7 @@ class BulletManager:
         self.enemy_bullets = []
 
 
-    def update (self, game):
+    def update (self, game, spaceship):
 
         for bullet in self.bullets:
             bullet.update(self.bullets)
@@ -34,9 +34,9 @@ class BulletManager:
                 #sound_muerte1.set_volume(1) #CONTROL DE VOLUMEN
                 sound_muerte.play()
                 if game.player.power_up_type != SHIELD_TYPE:
-                    vidas_disponibles = len(game.hearts) 
-                    for heart in game.hearts:
-                        game.hearts.remove(heart)
+                    vidas_disponibles = len(spaceship.hearts) 
+                    for heart in spaceship.hearts:
+                        spaceship.hearts.remove(heart)
                         break
                     if vidas_disponibles == 1:
                         game.death_count += 1
@@ -44,6 +44,7 @@ class BulletManager:
                         pygame.time.delay(1000)
                         break
                 self.enemy_bullets.remove(bullet)
+    
 
 
                 

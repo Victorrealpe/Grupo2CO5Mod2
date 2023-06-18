@@ -26,9 +26,9 @@ class Game:
         self.power_up_manager = PowerUpManager()
         self.death_count = 0
         self.score = 0
-        self.hearts = pygame.sprite.Group()  # Lista de corazones
+  # Lista de corazones
 
-        self.add_vida()  # Agregar los corazones
+        #self.add_vida()  # Agregar los corazones
         self.menu = Menu ('Press Any Key to start...', self.screen)
     
     def execute (self):
@@ -45,10 +45,12 @@ class Game:
     def run(self):
         # Game loop: events - update - draw
         self.score = 0
-        #self.spaceship.heart = 0
+
         self.bullet_manager.reset() 
         self.enemy_manager.reset() 
         self.playing = True
+        self.player.add_vida()
+        
         while self.playing:
             self.events()
             self.update()
@@ -63,7 +65,7 @@ class Game:
         user_input = pygame.key.get_pressed()
         self.player.update(user_input, self)
         self.enemy_manager.update(self)
-        self.bullet_manager.update(self)
+        self.bullet_manager.update(self,self.player)
         self.power_up_manager.update(self)
 
     def draw(self):
@@ -75,7 +77,7 @@ class Game:
         self.bullet_manager.draw(self.screen)
         self.power_up_manager.draw(self.screen)
         self.draw_score()
-        self.hearts.draw(self.screen) # DIBUJAR CORAZONES
+        self.player.hearts.draw(self.screen) # DIBUJAR CORAZONES
         self.draw_power_up_time()
         pygame.display.update()
         #pygame.display.flip()
@@ -120,11 +122,11 @@ class Game:
         for i in range(3):
             x = 40 + i * 40  # Espacio entre corazones
             y = 20  # Altura de los corazones
-            heart = Heart(x, y)  # Pasar las variables de clase como argumentos
+            heart = Heart(x, y)  
             self.hearts.add(heart)
 
-    def quitar_vida(self):
-        self.spaceship.vidas
+    #def reset_vidas(self):
+
 
 
     def draw_power_up_time(self):
@@ -140,4 +142,6 @@ class Game:
                 self.player_has_power_up = False
                 self.player.power_up_type = DEFAULT_TYPE
                 self.player.set_image()
+
+            
 

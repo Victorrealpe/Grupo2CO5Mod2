@@ -9,10 +9,11 @@ class Enemy(Sprite):
     SHIP_HEIGHT = 60
     Y_POS = 20
     X_POS_LIST = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550]
-    SPEED_Y = 1
-    SPEED_X = 5
+    SPEED_Y = 10
+    SPEED_X = 10
     MOV_X = {0: 'left', 1: 'right'}
     IMAGE = {1: ENEMY_1, 2: ENEMY_2}
+    
 
     def __init__(self, image = 1, speed_x = SPEED_X, speed_y = SPEED_Y, move_x_for = [30, 100]):
         self.image = self.IMAGE[image]
@@ -39,8 +40,25 @@ class Enemy(Sprite):
         
         self.change_movement_x()
 
+        #LOGICA DE BAJAR VIDA AL LLEGAR AL FINAL
+
         if self.rect.y >= SCREEN_HEIGHT:
+            
             ships.remove(self)
+            for heart in game.player.hearts:
+                game.player.hearts.remove(heart)
+                break
+
+        vidas_disponibles = len(game.player.hearts) + 1
+        if vidas_disponibles <= 1:
+                game.death_count += 1
+                game.playing = False
+                pygame.time.delay(1000)
+                
+                
+
+                
+                
 
     def draw(self, screen):
         screen.blit(self.image, (self.rect.x, self.rect.y))
@@ -60,6 +78,8 @@ class Enemy(Sprite):
             bullet = Bullet(self)
             bullet_Manager.add_bullet(bullet)
             self.shooting_time += random.randint(30, 50)
+
+
 
 
 
