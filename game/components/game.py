@@ -6,6 +6,7 @@ from game.components.power_ups.power_up_manager import PowerUpManager
 
 from game.utils.constants import BG, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, SOUND_BASE
 from game.components.spaceship import Spaceship
+from game.components.heart import Heart
 
 class Game:
     def __init__(self):
@@ -25,7 +26,9 @@ class Game:
         self.power_up_manager = PowerUpManager()
         self.death_count = 0
         self.score = 0
+        self.hearts = pygame.sprite.Group()  # Lista de corazones
 
+        self.add_vida()  # Agregar los corazones
         self.menu = Menu ('Press Any Key to start...', self.screen)
     
     def execute (self):
@@ -42,6 +45,7 @@ class Game:
     def run(self):
         # Game loop: events - update - draw
         self.score = 0
+        #self.spaceship.heart = 0
         self.bullet_manager.reset() 
         self.enemy_manager.reset() 
         self.playing = True
@@ -71,6 +75,7 @@ class Game:
         self.bullet_manager.draw(self.screen)
         self.power_up_manager.draw(self.screen)
         self.draw_score()
+        self.hearts.draw(self.screen) # DIBUJAR CORAZONES
         self.draw_power_up_time()
         pygame.display.update()
         #pygame.display.flip()
@@ -109,6 +114,15 @@ class Game:
         text_rect = text.get_rect()
         text_rect.center = (100, 100)
         self.screen.blit(text, text_rect)
+
+    #VIDA
+    def add_vida(self):
+        for i in range(3):
+            x = 40 + i * 40  # Espacio entre corazones
+            y = 20  # Altura de los corazones
+            heart = Heart(x, y)  # Pasar las variables de clase como argumentos
+            self.hearts.add(heart)
+
 
     def draw_power_up_time(self):
         if self.player.has_power_up:

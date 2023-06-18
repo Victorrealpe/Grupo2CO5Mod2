@@ -27,7 +27,7 @@ class BulletManager:
         for bullet in self.enemy_bullets:
             bullet.update(self.enemy_bullets)
 
-            if bullet.rect.colliderect(game.player.rect) and bullet.owner == 'enemy':
+            if bullet.rect.colliderect(game.player.rect) and bullet.owner == 'enemy': 
                 sound_muerte = pygame.mixer.Sound(SOUND_MUERTE)
                 #sound_muerte1.set_volume(1) #CONTROL DE VOLUMEN
                 sound_muerte.play()
