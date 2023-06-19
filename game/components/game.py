@@ -6,7 +6,7 @@ from game.components.power_ups.power_up_manager import PowerUpManager
 
 from game.utils.constants import BG, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, SOUND_BASE
 from game.components.spaceship import Spaceship
-from game.components.heart import Heart
+from game.components.heart import Heart 
 
 class Game:
     def __init__(self):
@@ -59,8 +59,14 @@ class Game:
     def update(self):
         user_input = pygame.key.get_pressed()
         self.player.update(user_input, self)
+
+        for enemy in self.enemy_manager.enemies:
+            enemy.update(self.enemy_manager.enemies, self)
+            
+
         self.enemy_manager.update(self)
-        self.bullet_manager.update(self,self.player)
+
+        self.bullet_manager.update(self, self.player)
         self.power_up_manager.update(self)
 
     def draw(self):

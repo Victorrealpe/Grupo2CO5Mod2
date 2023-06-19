@@ -28,10 +28,10 @@ class Enemy(Sprite):
         self.index = 0
         self.type = 'enemy'
         self.shooting_time = random.randint(30, 50)
+        self.bullets = []
 
     def update(self, ships, game):
         self.rect.y += self.speed_y
-        self.shoot(game.bullet_manager)
 
         if self.movement_x == 'left':
             self.rect.x -= self.speed_x
@@ -39,6 +39,8 @@ class Enemy(Sprite):
             self.rect.x += self.speed_x
         
         self.change_movement_x()
+
+        self.shoot(game.bullet_manager)
 
         #LOGICA DE BAJAR VIDA AL LLEGAR AL FINAL
 
@@ -77,6 +79,7 @@ class Enemy(Sprite):
         if self.shooting_time <= current_time:
             bullet = Bullet(self)
             bullet_Manager.add_bullet(bullet)
+            #self.bullets.append(bullet) BALAS DE MAS
             self.shooting_time += random.randint(30, 50)
 
 

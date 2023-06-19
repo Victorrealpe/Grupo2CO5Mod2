@@ -18,8 +18,6 @@ class EnemyManager:
             self.add_enemy(self.enemy_count)
             self.last_enemy_time = current_time
 
-        for enemy in self.enemies:
-            enemy.update(self.enemies, game)
 
     def draw (self, screen):
         for enemy in self.enemies:
@@ -31,12 +29,13 @@ class EnemyManager:
             if enemy_type == 1:
                 enemy = Enemy()
             else:
-                x_speed = 5
+                x_speed = 3
                 y_speed = 2
                 move_x_for = [50, 120]
                 enemy = Enemy(enemy_type, x_speed, y_speed, move_x_for)
 
             self.enemies.append(enemy)
+            
     
     def reset(self):
         self.enemies = []

@@ -12,9 +12,8 @@ class BulletManager:
 
     def update (self, game, spaceship):
 
-        for bullet in self.bullets:
-            bullet.update(self.bullets)
 
+        for bullet in self.bullets:
             for enemy in game.enemy_manager.enemies:
                 if bullet.rect.colliderect(enemy.rect) and bullet.owner == 'player':
                     sound_muerte = pygame.mixer.Sound(SOUND_MUERTE)
@@ -23,12 +22,8 @@ class BulletManager:
                     game.enemy_manager.enemies.remove(enemy)
                     self.bullets.remove(bullet)
 
-
-                    
-
         for bullet in self.enemy_bullets:
             bullet.update(self.enemy_bullets)
-
             if bullet.rect.colliderect(game.player.rect) and bullet.owner == 'enemy': 
                 sound_muerte = pygame.mixer.Sound(SOUND_MUERTE)
                 #sound_muerte1.set_volume(1) #CONTROL DE VOLUMEN
@@ -44,10 +39,18 @@ class BulletManager:
                         pygame.time.delay(1000)
                         break
                 self.enemy_bullets.remove(bullet)
+
+        for bullet in self.bullets:
+            bullet.update(self.bullets)  # Actualizar posición de balas del jugador
+
+        for bullet in self.enemy_bullets:
+            bullet.update(self.enemy_bullets)  # Actualizar posición de balas enemigas
+
+        
+        for enemy in game.enemy_manager.enemies:
+            enemy.shoot(game.bullet_manager)
+
     
-
-
-                
     def draw (self, screen):
         for bullet in self.bullets:
             bullet.draw(screen)
