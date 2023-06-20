@@ -110,7 +110,7 @@ class Game:
         
     def update_score(self):
         self.score += 1
-        #self.high_score = self.score
+    
     
     def draw_score(self):
         
@@ -138,7 +138,9 @@ class Game:
 
             if time_to_show >=0:
                 font = pygame.font.Font(FONT_STYLE, 30)
-                text = font.render(f'{self.player.power_up_type.capitalize()} is enable for {time_to_show} seconds', True, (255,255,255))
+                text = font.render(f'{str(self.player.power_up_type).capitalize()} is enable for {time_to_show} seconds', True, (255,255,255))
+
+                # text = font.render(f'{self.player.power_up_type.capitalize()} is enable for {time_to_show} seconds', True, (255,255,255))
                 text_rect = text.get_rect()
                 self.screen.blit(text,(540, 50))
             else:

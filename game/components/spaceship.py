@@ -22,12 +22,12 @@ class Spaceship(Sprite):
         self.power_time_up = 0
         self.vidas = 3  #vidas
         self.hearts = pygame.sprite.Group()
-        #self.add_vida()  # Agregar los corazones
         
         
 
 
     def update(self, user_input, game):
+
         if user_input[pygame.K_LEFT]:
             self.move_left()
         if user_input[pygame.K_RIGHT]:
@@ -38,6 +38,11 @@ class Spaceship(Sprite):
             self.move_down()
         if user_input[pygame.K_SPACE]:
             self.shoot(game)
+#iplementacion de agregar corazon poder
+
+        if game.player.power_up_type == str(SPACESHIP):
+            self.vidas += 1
+
 
     def move_left(self):
         self.rect.x -= self.SHIP_SPEED

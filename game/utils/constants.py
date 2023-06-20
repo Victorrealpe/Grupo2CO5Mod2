@@ -14,7 +14,7 @@ ICON = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship.png"))
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 
 CORAZON_scale = pygame.image.load(os.path.join(IMG_DIR, 'Other/CORAZON.png'))
-CORAZON = pygame.transform.scale(CORAZON_scale, (70, 80))
+CORAZON = pygame.transform.scale(CORAZON_scale, (70, 90))
 
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
