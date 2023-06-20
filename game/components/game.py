@@ -1,7 +1,7 @@
 import pygame
 from game.components.bullets.bullet_manager import BulletManager
 from game.components.enemies.enemy_manager import EnemyManager
-from game.components.menu import Menu
+#from game.components.menu import Menu
 from game.components.power_ups.power_up_manager import PowerUpManager
 
 from game.utils.constants import BG, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, SOUND_BASE
