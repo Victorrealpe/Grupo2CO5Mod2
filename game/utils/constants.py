@@ -13,6 +13,9 @@ ICON = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship.png"))
 
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 
+CORAZON_scale = pygame.image.load(os.path.join(IMG_DIR, 'Other/CORAZON.png'))
+CORAZON = pygame.transform.scale(CORAZON_scale, (70, 90))
+
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
@@ -27,5 +30,23 @@ BULLET = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_1.png"))
 BULLET_ENEMY = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_2.png"))
 ENEMY_1 = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_1.png"))
 ENEMY_2 = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_2.png"))
+
+#MENU
+BG_MENU0 = pygame.image.load(os.path.join(IMG_DIR, 'Other/FONDO_MENU.jpg'))
+BG_MENU =  pygame.transform.scale(BG_MENU0, (1200, 800))
+
+# SOUNDS
+
+#SONIDO DEL JUEGO
+SOUND_BASE = os.path.join(IMG_DIR, "Sound/SONIDO_BASE.mp3")
+
+#DISPAROS
+SOUND_BULLET_PLAYER = os.path.join(IMG_DIR, "Sound/DISPAROS_PLAYER.mp3")
+SOUND_BULLET_ENEMY = os.path.join(IMG_DIR, "Sound/DISPAROS_ENEMY.mp3")
+
+#MUERTE
+SOUND_MUERTE = os.path.join(IMG_DIR, "Sound/SONIDO_MUERTE.wav")
+
+
 
 FONT_STYLE = 'freesansbold.ttf'
