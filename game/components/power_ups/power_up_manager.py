@@ -5,7 +5,7 @@ import random
 
 import pygame
 from game.components.power_ups.shield import Shield
-
+#from game.components.power_ups.heart import Heart
 from game.utils.constants import SPACESHIP_SHIELD
 
 
@@ -30,6 +30,7 @@ class PowerUpManager:
                 game.player.power_up_type = power_up.type
                 game.player.has_power_up = True
                 game.player.power_time_up = power_up.start_time + (self.duration * 1000)
+                
                 game.player.set_image((65, 75), SPACESHIP_SHIELD)
                 self.power_ups.remove(power_up)
 
@@ -38,6 +39,9 @@ class PowerUpManager:
             power_up.draw(screen)
 
     def generate_power_up(self, game):
+
         power_up = Shield()
+        #power_heart = Heart()
         self.when_appears += random.randint(5000, 10000)
+
         self.power_ups.append(power_up)

@@ -26,7 +26,8 @@ class Game:
         self.power_up_manager = PowerUpManager()
         self.death_count = 0
         self.score = 0
-        self.menu = Menu ('Press Any Key to start...', self.screen)
+        self.high_score = 0
+        self.menu = Menu ('SPACE ATTACK', self.screen)
     
     def execute (self):
         sound_game= pygame.mixer.Sound(SOUND_BASE)
@@ -100,7 +101,7 @@ class Game:
         self.menu.reset_screen_color(self.screen)
 
         if self.death_count >0:
-            self.menu.update_message(f'Score: {str(self.score)}'+ f'\nDeath: {str(self.death_count)}')
+            self.menu.update_message(f'Score: {str(self.score)}    '+ f'Death: {str(self.death_count)}    ' + f'High Score: {str(self.high_score)}')
         icon = pygame.transform.scale (ICON, (80,120))
         self.screen.blit(icon, (half_screen_width - 50, half_screen_height -150))
 
@@ -109,13 +110,19 @@ class Game:
         
     def update_score(self):
         self.score += 1
+        #self.high_score = self.score
     
     def draw_score(self):
+        
         font = pygame.font.Font(FONT_STYLE, 30)
         text = font.render(f'Score: {self.score}', True, (255,255,255))
         text_rect = text.get_rect()
         text_rect.center = (100, 100)
         self.screen.blit(text, text_rect)
+
+        if self.score > self.high_score:
+            self.high_score = self.score
+        
 
     #VIDA
     def add_vida(self):

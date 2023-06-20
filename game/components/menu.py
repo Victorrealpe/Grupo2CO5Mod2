@@ -1,5 +1,5 @@
 import pygame
-from game.utils.constants import FONT_STYLE, SCREEN_HEIGHT, SCREEN_WIDTH
+from game.utils.constants import FONT_STYLE, SCREEN_HEIGHT, SCREEN_WIDTH, BG_MENU
 
 
 class Menu:
@@ -7,7 +7,9 @@ class Menu:
     HALF_SCREEN_WIDTH = SCREEN_WIDTH // 2
 
     def __init__(self, message, screen):
-        screen.fill((255, 255, 255))
+
+        screen.blit(BG_MENU,(0,0))
+
         self.font = pygame.font.Font(FONT_STYLE, 50)
         self.text = self.font.render(message, True, (0,0,0))
         self.text_rect = self.text.get_rect()
@@ -29,7 +31,7 @@ class Menu:
                 game.run()
 
     def reset_screen_color(self, screen):
-        screen.fill((255, 255, 255))
+        screen.blit(BG_MENU,(0,0))
 
     def update_message(self, message):
         self.text = self.font.render(message, True, (0,0,0))
