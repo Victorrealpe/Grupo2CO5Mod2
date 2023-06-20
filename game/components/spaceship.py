@@ -46,7 +46,7 @@ class Spaceship(Sprite):
                 y = 20  # Altura de los corazones
                 heart = Heart(x, y)  
                 self.hearts.add(heart)
-                break
+                
 
 
     def move_left(self):
