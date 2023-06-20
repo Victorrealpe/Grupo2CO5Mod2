@@ -41,7 +41,12 @@ class Spaceship(Sprite):
 #iplementacion de agregar corazon poder
 
         if game.player.power_up_type == str(SPACESHIP):
-            self.vidas += 1
+            for i in range(3):
+                x = 40 + i * 40  # Espacio entre corazones
+                y = 20  # Altura de los corazones
+                heart = Heart(x, y)  
+                self.hearts.add(heart)
+                break
 
 
     def move_left(self):
