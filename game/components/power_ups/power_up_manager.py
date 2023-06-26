@@ -2,7 +2,7 @@ import random
 import pygame
 from game.components.power_ups.shield import Shield
 from game.components.power_ups.power_heart import Heart
-from game.utils.constants import SPACESHIP_SHIELD,SPACESHIP
+from game.utils.constants import SPACESHIP_SHIELD,SHIELD_TYPE,HEART_TYPE,SPACESHIP
 
 
 class PowerUpManager:
@@ -21,30 +21,21 @@ class PowerUpManager:
             power_up.update(game.game_speed, self.power_ups)
 
             if game.player.rect.colliderect(power_up.rect):
-
-                if power_up == Heart:
-                    power_up.start_time = pygame.time.get_ticks()
-                    #implementar en game y player
-                    game.player.power_up_type = power_up.type
-                    game.player.power_up = power_up # no necesario torvic agrego
-                    game.player.has_power_up = True
-                    game.player.power_time_up = power_up.start_time + (self.duration * 1000)
-                    
-                    game.player.set_image((65, 75), SPACESHIP)
-                    self.power_ups.remove(power_up)
-
-                else:
-                    power_up.start_time = pygame.time.get_ticks()
-                    #implementar en game y player
-                    game.player.power_up_type = power_up.type
-                    game.player.has_power_up = True
-                    game.player.power_time_up = power_up.start_time + (self.duration * 1000)
-                    
+                
+                power_up.start_time = pygame.time.get_ticks()
+                game.player.power_up_type = power_up.type
+                game.player.has_power_up = True
+                game.player.power_time_up = power_up.start_time + (self.duration * 1000)
+                if game.player.power_up_type == SHIELD_TYPE:
                     game.player.set_image((65, 75), SPACESHIP_SHIELD)
                     self.power_ups.remove(power_up)
 
-                    
-
+                #elif game.player.power_up_type == HEART_TYPE:
+                   # game.player.set_image((65, 75), SPACESHIP)
+                   # self.power_ups.remove(power_up)
+                else:
+                    game.player.set_image((65, 75))
+                    self.power_ups.remove(power_up)
 
     def draw(self, screen):
         for power_up in self.power_ups:

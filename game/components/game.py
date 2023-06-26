@@ -3,8 +3,7 @@ from game.components.bullets.bullet_manager import BulletManager
 from game.components.enemies.enemy_manager import EnemyManager
 from game.components.menu import Menu
 from game.components.power_ups.power_up_manager import PowerUpManager
-
-from game.utils.constants import BG, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, SOUND_BASE, HEART, HEART_TYPE
+from game.utils.constants import BG, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, SOUND_BASE, HEART_TYPE
 from game.components.spaceship import Spaceship
 from game.components.heart import Heart 
 
@@ -64,9 +63,7 @@ class Game:
         for enemy in self.enemy_manager.enemies:
             enemy.update(self.enemy_manager.enemies, self)
             
-
         self.enemy_manager.update(self)
-
         self.bullet_manager.update(self, self.player)
         
         self.power_up_manager.update(self)
@@ -80,8 +77,8 @@ class Game:
         self.bullet_manager.draw(self.screen)
         self.power_up_manager.draw(self.screen)
         self.draw_score()
-        self.player.hearts.draw(self.screen) # DIBUJAR CORAZONES
         self.draw_power_up_time()
+        self.player.hearts.draw(self.screen)
         pygame.display.update()
 
     def draw_background(self):
@@ -124,15 +121,6 @@ class Game:
         if self.score > self.high_score:
             self.high_score = self.score
         
-
-    #VIDA
-    def add_vida(self):
-        for i in range(3):
-            x = 40 + i * 40  # Espacio entre corazones
-            y = 20  # Altura de los corazones
-            heart = Heart(x, y)  
-            self.hearts.add(heart)
-
     def draw_power_up_time(self):
         if self.player.has_power_up:
             time_to_show = round((self.player.power_time_up - pygame.time.get_ticks())/1000, 2)
@@ -140,8 +128,6 @@ class Game:
             if time_to_show >=0:
                 font = pygame.font.Font(FONT_STYLE, 30)
                 text = font.render(f'{str(self.player.power_up_type).capitalize()} is enable for {time_to_show} seconds', True, (255,255,255))
-
-                # text = font.render(f'{self.player.power_up_type.capitalize()} is enable for {time_to_show} seconds', True, (255,255,255))
                 text_rect = text.get_rect()
                 self.screen.blit(text,(540, 50))
             else:
@@ -150,20 +136,15 @@ class Game:
                 self.player.set_image()
 
         if self.player.has_power_up and self.player.power_up_type == HEART_TYPE:
-
-            x = 40 + 1 * 40  # Espacio entre corazones
-            y = 20  # Altura de los corazones
-            heart_agregado = Heart(x, y)  
-            self.player.hearts.add(heart_agregado)
-
-            #self.player.hearts = self.player.hearts + 1
-            print("se agrega  corazon poder")
-            heart_ag = HEART.get_rect()
-            heart_ag.center = (44, 20)
-            self.screen.blit(HEART, heart_ag)
-            self.player_has_power_up = False
-            self.player.power_up_type = DEFAULT_TYPE
-            self.player.set_image()
+            #if self.player.vidas < 10:
+            max_vidas = 10  # Número máximo de vidas permitidas
+            if len(self.player.hearts) < max_vidas:
+                self.player.vidas += 1
+                x = 40 + self.player.vidas * 40
+                y = 20
+                heart_mas = Heart(x, y)
+                self.player.hearts.add(heart_mas)
+            
 
             
 
