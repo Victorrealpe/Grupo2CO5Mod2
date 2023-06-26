@@ -30,24 +30,14 @@ class Spaceship(Sprite):
 
         if user_input[pygame.K_LEFT]:
             self.move_left()
-        if user_input[pygame.K_RIGHT]:
+        elif user_input[pygame.K_RIGHT]:
             self.move_right()
-        if user_input[pygame.K_UP]:
+        elif user_input[pygame.K_UP]:
             self.move_up()
-        if user_input[pygame.K_DOWN]:
+        elif user_input[pygame.K_DOWN]:
             self.move_down()
-        if user_input[pygame.K_SPACE]:
+        elif user_input[pygame.K_SPACE]:
             self.shoot(game)
-#iplementacion de agregar corazon poder
-
-        if game.player.power_up_type == str(SPACESHIP):
-            for i in range(3):
-                x = 40 + i * 40  # Espacio entre corazones
-                y = 20  # Altura de los corazones
-                heart = Heart(x, y)  
-                self.hearts.add(heart)
-                break
-
 
     def move_left(self):
         self.rect.x -= self.SHIP_SPEED
