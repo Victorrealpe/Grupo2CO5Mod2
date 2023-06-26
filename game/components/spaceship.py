@@ -20,7 +20,7 @@ class Spaceship(Sprite):
         self.power_up_type = DEFAULT_TYPE
         self.has_power_up = False
         self.power_time_up = 0
-        self.vidas = 3  #vidas
+        self.vidas = 0  #vidas
         self.hearts = pygame.sprite.Group()
         
         
@@ -74,10 +74,11 @@ class Spaceship(Sprite):
 
     def add_vida(self):
         print("agregando corazones")
-        for i in range(3):
-            x = 40 + i * 40  # Espacio entre corazones
+        for self.vidas in range(3):
+            x = 40 + self.vidas * 40  # Espacio entre corazones
             y = 20  # Altura de los corazones
             heart = Heart(x, y)  
             self.hearts.add(heart)
+            print(self.vidas)
 
 

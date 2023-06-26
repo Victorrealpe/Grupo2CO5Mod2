@@ -29,10 +29,12 @@ class BulletManager:
                 #sound_muerte1.set_volume(1) #CONTROL DE VOLUMEN
                 sound_muerte.play()
                 if game.player.power_up_type != SHIELD_TYPE:
-                    vidas_disponibles = len(spaceship.hearts) 
-                    for heart in spaceship.hearts:
-                        spaceship.hearts.remove(heart)
-                        break
+                    hearts_list = list(spaceship.hearts)
+                    vidas_disponibles = len(hearts_list)
+                    last_heart = hearts_list[-1] 
+                    hearts_list.remove(last_heart)
+                    spaceship.hearts = pygame.sprite.Group(hearts_list)
+                    
                     if vidas_disponibles == 1:
                         game.death_count += 1
                         game.playing = False

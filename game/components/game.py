@@ -135,14 +135,15 @@ class Game:
                 self.player.set_image()
 
         if self.player.has_power_up and self.player.power_up_type == HEART_TYPE:
-            if self.player.vidas < 10:
-                for vida in self.player.hearts:
-                    index_vida = list(self.player.hearts).index(vida)
-                    x = 40 + index_vida * 40
-                    y = 20
-                    heart_mas = Heart(x, y)
-                    self.player.hearts.add(heart_mas)
-                    break
+            #if self.player.vidas < 10:
+            max_vidas = 10  # Número máximo de vidas permitidas
+            if len(self.player.hearts) < max_vidas:
+                self.player.vidas += 1
+                x = 40 + self.player.vidas * 40
+                y = 20
+                heart_mas = Heart(x, y)
+                self.player.hearts.add(heart_mas)
+            
 
             
 
