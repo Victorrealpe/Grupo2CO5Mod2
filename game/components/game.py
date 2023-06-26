@@ -27,6 +27,7 @@ class Game:
         self.score = 0
         self.high_score = 0
         self.menu = Menu ('SPACE ATTACK', self.screen)
+
     
     def execute (self):
         sound_game= pygame.mixer.Sound(SOUND_BASE)
@@ -57,11 +58,13 @@ class Game:
                 self.playing = False
 
     def update(self):
+       
         user_input = pygame.key.get_pressed()
         self.player.update(user_input, self)
 
         for enemy in self.enemy_manager.enemies:
             enemy.update(self.enemy_manager.enemies, self)
+
             
         self.enemy_manager.update(self)
         self.bullet_manager.update(self, self.player)
@@ -108,6 +111,10 @@ class Game:
         
     def update_score(self):
         self.score += 1
+
+    def update_reset_power(self):
+        self.agregar_vida = False
+
     
     
     def draw_score(self):
@@ -136,15 +143,17 @@ class Game:
                 self.player.set_image()
 
         if self.player.has_power_up and self.player.power_up_type == HEART_TYPE:
-            #if self.player.vidas < 10:
-            max_vidas = 10  # Número máximo de vidas permitidas
-            if len(self.player.hearts) < max_vidas:
+            total_vidas = len(self.player.hearts)
+            max_vidas = total_vidas + 1  
+            if total_vidas < max_vidas:
                 self.player.vidas += 1
                 x = 40 + self.player.vidas * 40
                 y = 20
                 heart_mas = Heart(x, y)
-                self.player.hearts.add(heart_mas)
-            
+                self.player.hearts.add(heart_mas) 
 
             
+
+
+
 
