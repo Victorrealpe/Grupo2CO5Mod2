@@ -4,7 +4,7 @@ from game.components.enemies.enemy_manager import EnemyManager
 from game.components.menu import Menu
 from game.components.power_ups.power_up_manager import PowerUpManager
 
-from game.utils.constants import BG, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, SOUND_BASE
+from game.utils.constants import BG, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, SOUND_BASE, HEART, HEART_TYPE
 from game.components.spaceship import Spaceship
 from game.components.heart import Heart 
 
@@ -68,6 +68,7 @@ class Game:
         self.enemy_manager.update(self)
 
         self.bullet_manager.update(self, self.player)
+        
         self.power_up_manager.update(self)
 
     def draw(self):
@@ -147,6 +148,22 @@ class Game:
                 self.player_has_power_up = False
                 self.player.power_up_type = DEFAULT_TYPE
                 self.player.set_image()
+
+        if self.player.has_power_up and self.player.power_up_type == HEART_TYPE:
+
+            x = 40 + 1 * 40  # Espacio entre corazones
+            y = 20  # Altura de los corazones
+            heart_agregado = Heart(x, y)  
+            self.player.hearts.add(heart_agregado)
+
+            #self.player.hearts = self.player.hearts + 1
+            print("se agrega  corazon poder")
+            heart_ag = HEART.get_rect()
+            heart_ag.center = (44, 20)
+            self.screen.blit(HEART, heart_ag)
+            self.player_has_power_up = False
+            self.player.power_up_type = DEFAULT_TYPE
+            self.player.set_image()
 
             
 

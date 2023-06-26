@@ -1,6 +1,6 @@
 import pygame
 
-from game.utils.constants import SHIELD_TYPE, SOUND_MUERTE, SPACESHIP
+from game.utils.constants import SHIELD_TYPE, SOUND_MUERTE, HEART_TYPE,DEFAULT_TYPE
 from game.components.heart import Heart
 
 
@@ -28,7 +28,7 @@ class BulletManager:
                 sound_muerte = pygame.mixer.Sound(SOUND_MUERTE)
                 #sound_muerte1.set_volume(1) #CONTROL DE VOLUMEN
                 sound_muerte.play()
-                if game.player.power_up_type != SHIELD_TYPE and SPACESHIP:
+                if game.player.power_up_type == DEFAULT_TYPE:#SHIELD_TYPE: Y ERA !=
                     vidas_disponibles = len(spaceship.hearts) 
                     for heart in spaceship.hearts:
                         spaceship.hearts.remove(heart)
@@ -38,7 +38,7 @@ class BulletManager:
                         game.playing = False
                         pygame.time.delay(1000)
                         break
-                if game.player.power_up_type == SPACESHIP:
+                if game.player.power_up_type == HEART_TYPE:
                     for Heart in spaceship.hearts:
                         spaceship.hearts.add(Heart)
                         break
