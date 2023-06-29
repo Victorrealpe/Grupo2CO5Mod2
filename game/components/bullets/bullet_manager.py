@@ -20,7 +20,10 @@ class BulletManager:
                     pygame.mixer.Sound.play(sound_muerte)
                     game.score += 100
                     game.enemy_manager.enemies.remove(enemy)
+                    
                     self.bullets.remove(bullet)
+                    for bullet in self.enemy_bullets:
+                        self.enemy_bullets.remove(bullet)
 
         for bullet in self.enemy_bullets:
             bullet.update(self.enemy_bullets)
@@ -39,7 +42,7 @@ class BulletManager:
                     if vidas_disponibles == 1:
                         game.death_count += 1
                         game.playing = False
-                        pygame.time.delay(1000)
+                        pygame.time.delay(200)
                         break
                 if game.player.power_up_type == HEART_TYPE:
                     for Heart in spaceship.hearts:

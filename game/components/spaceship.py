@@ -70,12 +70,11 @@ class Spaceship(Sprite):
         self.image = pygame.transform.scale(self.image, size)
 
     def add_vida(self):
-        print("agregando corazones")
         for self.vidas in range(3):
             x = 40 + self.vidas * 40  # Espacio entre corazones
             y = 20  # Altura de los corazones
             heart = Heart(x, y)  
             self.hearts.add(heart)
-            print(self.vidas)
+    
 
 

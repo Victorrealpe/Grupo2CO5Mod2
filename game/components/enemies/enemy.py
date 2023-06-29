@@ -29,6 +29,7 @@ class Enemy(Sprite):
         self.type = 'enemy'
         self.shooting_time = random.randint(30, 50)
         self.bullets = []
+     
 
     def update(self, ships, game):
         self.rect.y += self.speed_y
@@ -46,16 +47,21 @@ class Enemy(Sprite):
 
         if self.rect.y >= SCREEN_HEIGHT:
             
+
             ships.remove(self)
             for heart in game.player.hearts:
-                game.player.hearts.remove(heart)
-                break
+                hearts_list = list(game.player.hearts)
+                last_heart = hearts_list[-1] 
+                if heart == last_heart:
+                    game.player.hearts.remove(heart)
+                    break
+
 
         vidas_disponibles = len(game.player.hearts) + 1
         if vidas_disponibles <= 1:
                 game.death_count += 1
                 game.playing = False
-                pygame.time.delay(1000)
+                pygame.time.delay(200)
                 
                 
 

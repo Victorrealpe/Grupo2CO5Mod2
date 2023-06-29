@@ -144,13 +144,17 @@ class Game:
 
         if self.player.has_power_up and self.player.power_up_type == HEART_TYPE:
             total_vidas = len(self.player.hearts)
-            max_vidas = total_vidas + 1  
+            max_vidas = 10
             if total_vidas < max_vidas:
                 self.player.vidas += 1
                 x = 40 + self.player.vidas * 40
                 y = 20
                 heart_mas = Heart(x, y)
                 self.player.hearts.add(heart_mas) 
+                self.player.has_power_up = False
+
+                
+        
 
             
 
