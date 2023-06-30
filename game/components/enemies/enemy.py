@@ -4,6 +4,7 @@ from pygame.sprite import Sprite
 from game.components.bullets.bullet import Bullet
 from game.utils.constants import ENEMY_1, ENEMY_2, SCREEN_HEIGHT, SCREEN_WIDTH
 
+
 class Enemy(Sprite):
     SHIP_WIDTH = 40
     SHIP_HEIGHT = 60
@@ -29,6 +30,7 @@ class Enemy(Sprite):
         self.type = 'enemy'
         self.shooting_time = random.randint(30, 50)
         self.bullets = []
+        self.shoot_num = 0
      
 
     def update(self, ships, game):
@@ -42,6 +44,8 @@ class Enemy(Sprite):
         self.change_movement_x()
 
         self.shoot(game.bullet_manager)
+        #for self in game.enemy_manager.enemies:
+            #self.shoot(game.bullet_manager)
 
         #LOGICA DE BAJAR VIDA AL LLEGAR AL FINAL
 
@@ -82,11 +86,13 @@ class Enemy(Sprite):
     
     def shoot(self, bullet_Manager):
         current_time = pygame.time.get_ticks()
-        if self.shooting_time <= current_time:
+        round_time = round((self.shooting_time - pygame.time.get_ticks())/1000)
+        if round_time <= 0:
             bullet = Bullet(self)
             bullet_Manager.add_bullet(bullet)
-            #self.bullets.append(bullet) BALAS DE MAS
-            self.shooting_time += random.randint(30, 50)
+            self.shoot_num += 1
+            #self.shooting_time += random.randint(30, 50)
+            self.shooting_time = pygame.time.get_ticks()+2000
 
 
 
