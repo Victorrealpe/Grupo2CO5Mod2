@@ -32,9 +32,10 @@ class PowerUpManager:
                     self.power_ups.remove(power_up)
 
                 elif game.player.power_up_type == HEART_TYPE:
-                    game.player.set_image((65, 75), SPACESHIP)
+                    nave = SPACESHIP
+                    game.player.set_image((40, 60), nave)
                     self.power_ups.remove(power_up)
-                    
+
                 else:
                     game.player.set_image((65, 75))
                     self.power_ups.remove(power_up)
