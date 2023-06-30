@@ -78,13 +78,17 @@ class BulletManager:
             pygame.display.flip()
 
     def add_bullet(self, bullet):
+
+
         if bullet.owner == "enemy":
                 self.enemy_bullets.append(bullet)
-        elif bullet.owner == "player":
+
+        elif bullet.owner == 'player' and len(self.bullets) < 3:
+            self.bullets.append(bullet)
+
+        elif bullet.owner == "enemy":
             self.enemy_bullets.append(bullet)
 
-        if bullet.owner == 'player' and len(self.bullets) < 3:
-            self.bullets.append(bullet)
 
            
     
