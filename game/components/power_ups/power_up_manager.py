@@ -26,16 +26,19 @@ class PowerUpManager:
                 game.player.power_up_type = power_up.type
                 game.player.has_power_up = True
                 game.player.power_time_up = power_up.start_time + (self.duration * 1000)
+
                 if game.player.power_up_type == SHIELD_TYPE:
                     game.player.set_image((65, 75), SPACESHIP_SHIELD)
                     self.power_ups.remove(power_up)
 
-                #elif game.player.power_up_type == HEART_TYPE:
-                   # game.player.set_image((65, 75), SPACESHIP)
-                   # self.power_ups.remove(power_up)
+                elif game.player.power_up_type == HEART_TYPE:
+                    game.player.set_image((65, 75), SPACESHIP)
+                    self.power_ups.remove(power_up)
+                    
                 else:
                     game.player.set_image((65, 75))
                     self.power_ups.remove(power_up)
+
 
     def draw(self, screen):
         for power_up in self.power_ups:
