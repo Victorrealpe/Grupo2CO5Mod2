@@ -44,8 +44,6 @@ class Enemy(Sprite):
         self.change_movement_x()
 
         self.shoot(game.bullet_manager)
-        #for self in game.enemy_manager.enemies:
-            #self.shoot(game.bullet_manager)
 
         #LOGICA DE BAJAR VIDA AL LLEGAR AL FINAL
 
@@ -69,9 +67,6 @@ class Enemy(Sprite):
                 
                 
 
-                
-                
-
     def draw(self, screen):
         screen.blit(self.image, (self.rect.x, self.rect.y))
 
@@ -91,7 +86,6 @@ class Enemy(Sprite):
             bullet = Bullet(self)
             bullet_Manager.add_bullet(bullet)
             self.shoot_num += 1
-            #self.shooting_time += random.randint(30, 50)
             self.shooting_time = pygame.time.get_ticks()+2000
 
 

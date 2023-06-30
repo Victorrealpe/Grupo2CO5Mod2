@@ -1,7 +1,7 @@
 import pygame
 from game.utils.constants import EXPLOSION_1, EXPLOSION_10, EXPLOSION_11, EXPLOSION_12, EXPLOSION_2, EXPLOSION_3, EXPLOSION_4, EXPLOSION_5, EXPLOSION_6, EXPLOSION_7, EXPLOSION_8, EXPLOSION_9
-from game.utils.constants import SHIELD_TYPE, SOUND_MUERTE, HEART_TYPE,DEFAULT_TYPE
-from game.components.heart import Heart
+from game.utils.constants import SHIELD_TYPE, SOUND_MUERTE, HEART_TYPE
+
 
 
 class BulletManager:
@@ -77,13 +77,6 @@ class BulletManager:
 
             pygame.display.flip()
 
-    """def add_bullet(self, bullet):
-
-        if bullet.owner == 'player' and len(self.bullets) < 3:
-            self.bullets.append(bullet)
-
-        elif bullet.owner == 'enemy' and len(self.enemy_bullets) < 1:
-            self.enemy_bullets.append(bullet)"""
     def add_bullet(self, bullet):
         if bullet.owner == "enemy":
                 self.enemy_bullets.append(bullet)
@@ -99,19 +92,3 @@ class BulletManager:
         self.bullets = []
         self.player_bullets = []
         self.enemy_bullets = []
-
-    
-"""
-            for bullet in self.bullets:
-            for enemy in game.enemy_manager.enemies:
-                if bullet.rect.colliderect(enemy.rect) and bullet.owner == 'player':
-                    sound_muerte = pygame.mixer.Sound(SOUND_MUERTE)
-                    pygame.mixer.Sound.play(sound_muerte)
-                    game.score += 100
-                    self.explosion(game,game.enemy_manager.enemies[len(game.enemy_manager.enemies)])
-                    game.enemy_manager.enemies.remove((enemy))
-                    
-                    self.bullets.remove(bullet)
-                    for bullet in self.enemy_bullets:
-                        self.enemy_bullets.remove(bullet)
-                        """
