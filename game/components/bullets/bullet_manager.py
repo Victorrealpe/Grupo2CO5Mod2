@@ -12,6 +12,8 @@ class BulletManager:
 
     def update (self, game, spaceship):
 
+   
+
 
         for bullet in self.bullets:
             for enemy in game.enemy_manager.enemies:
@@ -58,8 +60,7 @@ class BulletManager:
             bullet.update(self.enemy_bullets)  # Actualizar posición de balas enemigas
 
         
-        for enemy in game.enemy_manager.enemies:
-            enemy.shoot(game.bullet_manager)
+
 
     
     def draw (self, screen):

@@ -41,7 +41,12 @@ class Enemy(Sprite):
         
         self.change_movement_x()
 
-        self.shoot(game.bullet_manager)
+        #self.shoot(game.bullet_manager) 1
+        #game.bullet_manager.add_bullet(self.shoot(game.bullet_manager)) 2
+
+        bullet = self.shoot()
+        if bullet is not None:
+            game.bullet_manager.add_bullet(bullet)
 
         #LOGICA DE BAJAR VIDA AL LLEGAR AL FINAL
 
@@ -80,13 +85,20 @@ class Enemy(Sprite):
             self.movement_x = 'right'
             self.index = 0
     
-    def shoot(self, bullet_Manager):
-        current_time = pygame.time.get_ticks()
+    def shoot(self):
+        """current_time = pygame.time.get_ticks()
         if self.shooting_time <= current_time:
             bullet = Bullet(self)
             bullet_Manager.add_bullet(bullet)
             #self.bullets.append(bullet) BALAS DE MAS
+            self.shooting_time += random.randint(30, 50)"""
+        current_time = pygame.time.get_ticks()
+        if self.shooting_time <= current_time:
             self.shooting_time += random.randint(30, 50)
+            bullet = Bullet(self)
+            self.bullets.append(bullet)  # Agregar la bala a la lista de balas del enemigo
+            return bullet
+        return None
 
 
 
