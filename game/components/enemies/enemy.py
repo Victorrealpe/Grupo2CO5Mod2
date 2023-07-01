@@ -46,7 +46,7 @@ class Enemy(Sprite):
         #self.shoot(game.bullet_manager) 1
         #game.bullet_manager.add_bullet(self.shoot(game.bullet_manager)) 2
 
-        bullet = self.shoot()
+        bullet = self.shoot(game.bullet_manager)
         if bullet is not None:
             game.bullet_manager.add_bullet(bullet)
 
