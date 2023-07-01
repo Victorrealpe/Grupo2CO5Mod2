@@ -1,7 +1,7 @@
 import pygame
+from game.utils.constants import EXPLOSION_1, EXPLOSION_10, EXPLOSION_11, EXPLOSION_12, EXPLOSION_2, EXPLOSION_3, EXPLOSION_4, EXPLOSION_5, EXPLOSION_6, EXPLOSION_7, EXPLOSION_8, EXPLOSION_9
+from game.utils.constants import SHIELD_TYPE, SOUND_MUERTE, HEART_TYPE
 
-from game.utils.constants import SHIELD_TYPE, SOUND_MUERTE, HEART_TYPE,DEFAULT_TYPE
-from game.components.heart import Heart
 
 
 class BulletManager:
@@ -21,7 +21,8 @@ class BulletManager:
                     sound_muerte = pygame.mixer.Sound(SOUND_MUERTE)
                     pygame.mixer.Sound.play(sound_muerte)
                     game.score += 100
-                    game.enemy_manager.enemies.remove(enemy)
+                    self.explosion(game,enemy)
+                    game.enemy_manager.enemies.remove((enemy))
                     
                     self.bullets.remove(bullet)
                     for bullet in self.enemy_bullets:
@@ -59,9 +60,6 @@ class BulletManager:
         for bullet in self.enemy_bullets:
             bullet.update(self.enemy_bullets)  # Actualizar posición de balas enemigas
 
-        
-
-
     
     def draw (self, screen):
         for bullet in self.bullets:
@@ -70,14 +68,33 @@ class BulletManager:
         for bullet in self.enemy_bullets:
             bullet.draw(screen)
 
+    def explosion(self, game, enemigo):
+        x = enemigo.rect.x + (enemigo.rect.width - EXPLOSION_1.get_width()) // 2
+        y = enemigo.rect.y + (enemigo.rect.height - EXPLOSION_1.get_height()) // 2
+
+        imagenes_explosion = [EXPLOSION_1, EXPLOSION_2, EXPLOSION_3, EXPLOSION_4, EXPLOSION_5, EXPLOSION_6, EXPLOSION_7, EXPLOSION_8, EXPLOSION_9, EXPLOSION_10, EXPLOSION_11, EXPLOSION_12]
+
+        for i, imagen_explosion in enumerate(imagenes_explosion):
+            game.screen.blit(imagen_explosion, (x, y-10))
+
+            pygame.display.flip()
+
     def add_bullet(self, bullet):
-        if bullet.owner == 'player' and len(self.bullets) < 3:
+
+
+        if bullet.owner == "enemy":
+                self.enemy_bullets.append(bullet)
+
+        elif bullet.owner == 'player' and len(self.bullets) < 3:
             self.bullets.append(bullet)
-        elif bullet.owner == 'enemy' and len(self.enemy_bullets) < 1:
+
+        elif bullet.owner == "enemy":
             self.enemy_bullets.append(bullet)
+
+
+           
     
     def reset(self):
         self.bullets = []
+        self.player_bullets = []
         self.enemy_bullets = []
-
-    

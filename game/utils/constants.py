@@ -50,6 +50,21 @@ SOUND_BULLET_ENEMY = os.path.join(IMG_DIR, "Sound/DISPAROS_ENEMY.mp3")
 #MUERTE
 SOUND_MUERTE = os.path.join(IMG_DIR, "Sound/SONIDO_MUERTE.wav")
 
+#ANIMACION DE EXPLOCION
+
+EXPLOSION_1 = pygame.image.load(os.path.join(IMG_DIR, "Explosion/1.png"))
+EXPLOSION_2 = pygame.image.load(os.path.join(IMG_DIR, "Explosion/2.png"))
+EXPLOSION_3 = pygame.image.load(os.path.join(IMG_DIR, "Explosion/3.png"))
+EXPLOSION_4 = pygame.image.load(os.path.join(IMG_DIR, "Explosion/4.png"))
+EXPLOSION_5 = pygame.image.load(os.path.join(IMG_DIR, "Explosion/5.png"))
+EXPLOSION_6 = pygame.image.load(os.path.join(IMG_DIR, "Explosion/6.png"))
+EXPLOSION_7 = pygame.image.load(os.path.join(IMG_DIR, "Explosion/7.png"))
+EXPLOSION_8 = pygame.image.load(os.path.join(IMG_DIR, "Explosion/8.png"))
+EXPLOSION_9 = pygame.image.load(os.path.join(IMG_DIR, "Explosion/9.png"))
+EXPLOSION_10 = pygame.image.load(os.path.join(IMG_DIR, "Explosion/10.png"))
+EXPLOSION_11 = pygame.image.load(os.path.join(IMG_DIR, "Explosion/10.png"))
+EXPLOSION_12 = pygame.image.load(os.path.join(IMG_DIR, "Explosion/10.png"))
+
 
 
 FONT_STYLE = 'freesansbold.ttf'

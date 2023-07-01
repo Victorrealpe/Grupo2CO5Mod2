@@ -65,10 +65,8 @@ class Game:
         for enemy in self.enemy_manager.enemies:
             enemy.update(self.enemy_manager.enemies, self)
 
-            
         self.enemy_manager.update(self)
         self.bullet_manager.update(self, self.player)
-        
         self.power_up_manager.update(self)
 
     def draw(self):
