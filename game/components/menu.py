@@ -11,6 +11,7 @@ class Menu:
 
     def __init__(self, message, screen):
         screen.blit(BG_MENU, (0,0))
+        self.screen = screen.blit(BG_MENU, (0,0))
         self.font = pygame.font.Font(FONT_STYLE, 50)
         self.text = self.font.render(message, True, (0,0,0))
         self.text_rect = self.text.get_rect()
@@ -22,7 +23,7 @@ class Menu:
     def update(self, game):
         pygame.display.update()
         self.handle_events_on_menu(game)
-        Menu.main_menu(self,Menu.screen,game)
+        Menu.main_menu(self, self.screen,game)
 
     def draw (self, screen ):
         screen.blit(self.text, self.text_rect)
@@ -48,7 +49,7 @@ class Menu:
 
 
     def main_menu(self, screen,game):
-        while True:
+        while game.death_count <= 0:
             screen.blit(BG_MENU,(0,0))
 
             MENU_MOUSE_POS = pygame.mouse.get_pos()
@@ -85,7 +86,7 @@ class Menu:
                         game.running = False
                         pygame.quit()
                         sys.exit()
-                        
+
             pygame.display.update()
 
 #Menu.main_menu()

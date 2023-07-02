@@ -108,12 +108,16 @@ class Game:
         half_screen_height = SCREEN_HEIGHT //2
 
         self.menu.reset_screen_color(self.screen)
-        self.menu.main_menu(self.screen,self)
+        #self.menu.main_menu(self.screen,self)
 
-        if self.death_count >0:
+        if self.death_count > 0:
             self.menu.update_message(f'Score: {str(self.score)}    '+ f'Death: {str(self.death_count)}    ' + f'High Score: {str(self.high_score)}')
+        else:
+            self.menu.main_menu(self.screen,self)
+
         icon = pygame.transform.scale (ICON, (80,120))
         self.screen.blit(icon, (half_screen_width - 50, half_screen_height -150))
+
 
         self.menu.draw(self.screen)
         self.menu.update(self)
