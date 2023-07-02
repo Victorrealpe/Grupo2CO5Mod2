@@ -93,11 +93,22 @@ class Game:
             
         self.y_pos_bg += self.game_speed
 
+
+
+
+
+
+
+
+
+
+
     def show_menu(self):
         half_screen_width = SCREEN_WIDTH // 2
         half_screen_height = SCREEN_HEIGHT //2
 
         self.menu.reset_screen_color(self.screen)
+        self.menu.main_menu(self.screen,self)
 
         if self.death_count >0:
             self.menu.update_message(f'Score: {str(self.score)}    '+ f'Death: {str(self.death_count)}    ' + f'High Score: {str(self.high_score)}')
@@ -106,6 +117,17 @@ class Game:
 
         self.menu.draw(self.screen)
         self.menu.update(self)
+
+
+
+
+
+
+
+
+
+
+
         
     def update_score(self):
         self.score += 1
