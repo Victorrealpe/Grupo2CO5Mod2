@@ -107,16 +107,24 @@ class Game:
         half_screen_width = SCREEN_WIDTH // 2
         half_screen_height = SCREEN_HEIGHT //2
 
+        score = f'Score: {str(self.score)}'
+        death = f'Death: {str(self.death_count)}' 
+        hScore = f'High Score: {str(self.high_score)}'
+
+        mensajes =[score,death,hScore]
+
         self.menu.reset_screen_color(self.screen)
     
 
         if self.death_count > 0 and self.playing == False:
-            self.menu.update_message(f'Score: {str(self.score)}    '+ f'Death: {str(self.death_count)}    ' + f'High Score: {str(self.high_score)}', self.screen, self)
+            #self.menu.update_message(f'Score: {str(self.score)}    '+ f'Death: {str(self.death_count)}    ' + f'High Score: {str(self.high_score)}', self.screen, self)
+            self.menu.update_message(mensajes, self.screen, self)
         else:
             self.menu.main_menu(self.screen,self)
 
+
         icon = pygame.transform.scale (ICON, (80,120))
-        self.screen.blit(icon, (half_screen_width - 50, half_screen_height -150))
+        self.screen.blit(icon, (half_screen_width - 50, half_screen_height -250))
 
 
         self.menu.draw(self.screen)
