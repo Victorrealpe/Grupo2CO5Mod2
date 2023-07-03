@@ -108,10 +108,10 @@ class Game:
         half_screen_height = SCREEN_HEIGHT //2
 
         self.menu.reset_screen_color(self.screen)
-        #self.menu.main_menu(self.screen,self)
+    
 
-        if self.death_count > 0:
-            self.menu.update_message(f'Score: {str(self.score)}    '+ f'Death: {str(self.death_count)}    ' + f'High Score: {str(self.high_score)}')
+        if self.death_count > 0 and self.playing == False:
+            self.menu.update_message(f'Score: {str(self.score)}    '+ f'Death: {str(self.death_count)}    ' + f'High Score: {str(self.high_score)}', self.screen, self)
         else:
             self.menu.main_menu(self.screen,self)
 

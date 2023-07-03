@@ -16,13 +16,14 @@ class Menu:
         self.text = self.font.render(message, True, (0,0,0))
         self.text_rect = self.text.get_rect()
         self.text_rect.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT)
+        self.menu_back = False 
 
     def get_font(size): 
         return pygame.font.Font(FONT_STYLE, size)
 
     def update(self, game):
         pygame.display.update()
-        self.handle_events_on_menu(game)
+        #self.handle_events_on_menu(game)
         Menu.main_menu(self, self.screen,game)
 
     def draw (self, screen ):
@@ -40,16 +41,49 @@ class Menu:
 
     def reset_screen_color(self, screen):
         screen.blit(BG_MENU,(0,0))
+     
 
 
-    def update_message(self, message):
+    def update_message(self, message, screen, game):
+
+        MENU_MOUSE_POS = pygame.mouse.get_pos()
+
         self.text = self.font.render(message, True, (0,0,0))
         self.text_rect = self.text.get_rect()
         self.text_rect.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT)
 
 
+        PLAY_BUTTON = Button(image=pygame.image.load("game/assets/Play Rect.png"), pos=(300, 550), 
+            text_input="PLAY AGAIN", font=Menu.get_font(75), base_color="#d7fcd4", hovering_color="White")
+        
+        QUIT_BUTTON = Button(image=pygame.image.load("game/assets/Quit Rect.png"), pos=(850, 550), 
+            text_input="EXIT", font=Menu.get_font(75), base_color="#d7fcd4", hovering_color="White")
+        
+        for button in [PLAY_BUTTON, QUIT_BUTTON]:
+            button.changeColor(MENU_MOUSE_POS)
+            button.update(screen)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    game.run()
+                    self.menu_back = False
+             
+                if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    self.menu_back = True
+                    Menu.main_menu(self, screen, game)
+            
+
+
     def main_menu(self, screen,game):
-        while game.death_count <= 0:
+
+        global menu_volver 
+
+        while game.death_count <= 0 or self.menu_back == True:
+            
             screen.blit(BG_MENU,(0,0))
 
             MENU_MOUSE_POS = pygame.mouse.get_pos()
@@ -77,6 +111,7 @@ class Menu:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
                         game.run()
+                        self.menu_back = False 
                         
                     if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
                         #options()
@@ -89,8 +124,8 @@ class Menu:
 
             pygame.display.update()
 
-#Menu.main_menu()
+    
 
-
+        
 
     
