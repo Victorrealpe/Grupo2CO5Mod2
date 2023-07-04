@@ -6,7 +6,7 @@ from game.utils.constants import BULLET, BULLET_ENEMY, SCREEN_HEIGHT
 
 
 class Bullet(Sprite):
-    BULLET_SIZE = pygame.transform.scale(BULLET, (10,20))
+    BULLET_SIZE = pygame.transform.scale(BULLET, (20,40))
     BULLET_ENEMY_SIZE = pygame.transform.scale(BULLET_ENEMY, (10,20))
     BULLETS = {'player': BULLET_SIZE, 'enemy': BULLET_ENEMY_SIZE}
     SPEED = 20

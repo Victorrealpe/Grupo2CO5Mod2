@@ -93,19 +93,45 @@ class Game:
             
         self.y_pos_bg += self.game_speed
 
+
+
+
+
+
+
+
+
+
+
     def show_menu(self):
         half_screen_width = SCREEN_WIDTH // 2
         half_screen_height = SCREEN_HEIGHT //2
 
         self.menu.reset_screen_color(self.screen)
+    
 
-        if self.death_count >0:
-            self.menu.update_message(f'Score: {str(self.score)}    '+ f'Death: {str(self.death_count)}    ' + f'High Score: {str(self.high_score)}')
+        if self.death_count > 0 and self.playing == False:
+            self.menu.update_message(f'Score: {str(self.score)}    '+ f'Death: {str(self.death_count)}    ' + f'High Score: {str(self.high_score)}', self.screen, self)
+        else:
+            self.menu.main_menu(self.screen,self)
+
         icon = pygame.transform.scale (ICON, (80,120))
         self.screen.blit(icon, (half_screen_width - 50, half_screen_height -150))
 
+
         self.menu.draw(self.screen)
         self.menu.update(self)
+
+
+
+
+
+
+
+
+
+
+
         
     def update_score(self):
         self.score += 1

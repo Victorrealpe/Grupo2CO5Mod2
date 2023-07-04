@@ -12,6 +12,8 @@ class BulletManager:
 
     def update (self, game, spaceship):
 
+   
+
 
         for bullet in self.bullets:
             for enemy in game.enemy_manager.enemies:

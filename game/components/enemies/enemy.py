@@ -43,7 +43,12 @@ class Enemy(Sprite):
         
         self.change_movement_x()
 
-        self.shoot(game.bullet_manager)
+        #self.shoot(game.bullet_manager) 1
+        #game.bullet_manager.add_bullet(self.shoot(game.bullet_manager)) 2
+
+        bullet = self.shoot(game.bullet_manager)
+        if bullet is not None:
+            game.bullet_manager.add_bullet(bullet)
 
         #LOGICA DE BAJAR VIDA AL LLEGAR AL FINAL
 
