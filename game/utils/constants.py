@@ -60,6 +60,12 @@ SOUND_BULLET_ENEMY = os.path.join(IMG_DIR, "Sound/DISPAROS_ENEMY.mp3")
 #MUERTE
 SOUND_MUERTE = os.path.join(IMG_DIR, "Sound/SONIDO_MUERTE.wav")
 
+#BOMBA
+SOUND_BOMB = os.path.join(IMG_DIR, "Sound/MUSIC_BOMB.wav")
+
+
+
+
 #ANIMACION DE EXPLOCION
 
 EXPLOSION_1 = pygame.image.load(os.path.join(IMG_DIR, "Explosion/1.png"))
