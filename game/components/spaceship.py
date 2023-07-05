@@ -9,6 +9,7 @@ class Spaceship(Sprite):
     X_POS = (SCREEN_WIDTH // 2) - SHIP_WIDTH
     Y_POS = 500
     SHIP_SPEED = 10
+    SHOOT_DELAY = 200
 
     def __init__(self):
         self.image = SPACESHIP
@@ -22,6 +23,7 @@ class Spaceship(Sprite):
         self.power_time_up = 0
         self.vidas = 0  #vidas
         self.hearts = pygame.sprite.Group()
+        self.last_shot_time = 0
 
     def update(self, user_input, game):
 
@@ -35,6 +37,12 @@ class Spaceship(Sprite):
             self.move_down()
         elif user_input[pygame.K_SPACE]:
             self.shoot(game)
+
+        if user_input[pygame.K_SPACE]:
+            current_time = pygame.time.get_ticks()
+            if current_time - self.last_shot_time >= self.SHOOT_DELAY:
+                self.shoot(game)
+                self.last_shot_time = current_time
 
     def move_left(self):
         self.rect.x -= self.SHIP_SPEED
