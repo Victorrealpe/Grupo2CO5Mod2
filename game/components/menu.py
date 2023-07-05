@@ -16,15 +16,15 @@ class Menu:
 
         self.text = self.font.render(messages[0], True, (0,0,0))
         self.text_rect = self.text.get_rect()
-        self.text_rect.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT)
+        self.text_rect.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT *2)
 
         self.text1 = self.font.render(messages[1], True, (0,0,0))
         self.text_rect1 = self.text.get_rect()
-        self.text_rect1.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT + 60)
+        self.text_rect1.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT *2 + 60)
 
         self.text2 = self.font.render(messages[2], True, (0,0,0))
         self.text_rect2 = self.text.get_rect()
-        self.text_rect2.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT + 300)
+        self.text_rect2.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT *2 + 300)
 
 
 
@@ -62,23 +62,27 @@ class Menu:
 
     def update_message(self, messages, screen, game):
 
+        boton_grande0 = pygame.image.load("game/assets/Play Rect.png")
+        boton_grande = pygame.transform.scale(boton_grande0, (500, 110))
+     
+
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
 
         self.text = self.font.render(messages[0], True, (0,0,0))
         self.text_rect = self.text.get_rect()
-        self.text_rect.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT)
+        self.text_rect.center = (self.HALF_SCREEN_WIDTH - 10, SCREEN_HEIGHT/3 + 30)
 
         self.text1 = self.font.render(messages[1], True, (0,0,0))
         self.text_rect1 = self.text.get_rect()
-        self.text_rect1.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT + 60)
+        self.text_rect1.center = (self.HALF_SCREEN_WIDTH - 10, SCREEN_HEIGHT/3 + 100)
 
         self.text2 = self.font.render(messages[2], True, (0,0,0))
         self.text_rect2 = self.text.get_rect()
-        self.text_rect2.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT + 100)
+        self.text_rect2.center = (self.HALF_SCREEN_WIDTH - 70, SCREEN_HEIGHT/3 + 170)
 
 
-        PLAY_BUTTON = Button(image=pygame.image.load("game/assets/Play Rect.png"), pos=(300, 500), 
+        PLAY_BUTTON = Button(image=boton_grande, pos=(300, 500), 
             text_input="PLAY AGAIN", font=Menu.get_font(75), base_color="#d7fcd4", hovering_color="White")
         
         QUIT_BUTTON = Button(image=pygame.image.load("game/assets/Quit Rect.png"), pos=(850, 500), 
