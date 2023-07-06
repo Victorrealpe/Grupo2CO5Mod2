@@ -13,17 +13,27 @@ ICON = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship.png"))
 
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 
-CORAZON_scale = pygame.image.load(os.path.join(IMG_DIR, 'Other/CORAZON.png'))
-CORAZON = pygame.transform.scale(CORAZON_scale, (70, 90))
-
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
+
+#PODERES
+
+CORAZON_scale = pygame.image.load(os.path.join(IMG_DIR, 'Other/CORAZON.png'))
+CORAZON = pygame.transform.scale(CORAZON_scale, (70, 90))
+
+BOMB_scale = pygame.image.load(os.path.join(IMG_DIR, 'Other/BOMB.png'))
+BOMB = pygame.transform.scale(BOMB_scale, (60, 70))
+
+
+
+
 
 DEFAULT_TYPE = "default"
 HEART_TYPE = "heart"
 SHIELD_TYPE = 'shield'
 HEART_TYPE = 'heart'
+BOMB_TYPE = 'bomb'
 
 
 SPACESHIP = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship.png"))
@@ -49,6 +59,12 @@ SOUND_BULLET_ENEMY = os.path.join(IMG_DIR, "Sound/DISPAROS_ENEMY.mp3")
 
 #MUERTE
 SOUND_MUERTE = os.path.join(IMG_DIR, "Sound/SONIDO_MUERTE.wav")
+
+#BOMBA
+SOUND_BOMB = os.path.join(IMG_DIR, "Sound/MUSIC_BOMB.wav")
+
+
+
 
 #ANIMACION DE EXPLOCION
 
