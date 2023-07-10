@@ -62,7 +62,7 @@ class Menu:
 
     def update_message(self, messages, screen, game):
 
-        boton_grande0 = pygame.image.load("game/assets/Play Rect.png")
+        boton_grande0 = pygame.image.load("Grupo2CO5Mod2/game/assets/Play Rect.png")
         boton_grande = pygame.transform.scale(boton_grande0, (500, 110))
      
 
@@ -85,7 +85,7 @@ class Menu:
         PLAY_BUTTON = Button(image=boton_grande, pos=(300, 500), 
             text_input="PLAY AGAIN", font=Menu.get_font(75), base_color="#d7fcd4", hovering_color="White")
         
-        QUIT_BUTTON = Button(image=pygame.image.load("game/assets/Quit Rect.png"), pos=(850, 500), 
+        QUIT_BUTTON = Button(image=pygame.image.load("Grupo2CO5Mod2/game/assets/Quit Rect.png"), pos=(850, 500), 
             text_input="EXIT", font=Menu.get_font(75), base_color="#d7fcd4", hovering_color="White")
         
         for button in [PLAY_BUTTON, QUIT_BUTTON]:
@@ -114,8 +114,8 @@ class Menu:
         global menu_volver 
 
         while game.death_count <= 0 or self.menu_back == True:
-            boton_grande0 = pygame.image.load("game/assets/Play Rect.png")
-            boton_grande = pygame.transform.scale(boton_grande0, (300, 100))
+            #boton_grande0 = pygame.image.load("game/assets/Menu/Play Rect.png")
+            #boton_grande = pygame.transform.scale(boton_grande0, (300, 100))
             
             screen.blit(BG_MENU,(0,0))
 
@@ -124,11 +124,11 @@ class Menu:
             MENU_TEXT = Menu.get_font(100).render("ATTACK IN SPACE", True, "#b68f40")
             MENU_RECT = MENU_TEXT.get_rect(center=(550, 80))
 
-            PLAY_BUTTON = Button(image=boton_grande, pos=(550, 230), 
+            PLAY_BUTTON = Button(image=pygame.image.load("Grupo2CO5Mod2/game/assets/Play Rect.png"), pos=(550, 230), 
                                 text_input="PLAY", font=Menu.get_font(75), base_color="#d7fcd4", hovering_color="White")
-            OPTIONS_BUTTON = Button(image=pygame.image.load("game/assets/Options Rect.png"), pos=(550, 380), 
+            OPTIONS_BUTTON = Button(image=pygame.image.load("Grupo2CO5Mod2/game/assets/Options Rect.png"), pos=(550, 380), 
                                 text_input="OPTIONS", font=Menu.get_font(75), base_color="#d7fcd4", hovering_color="White")
-            QUIT_BUTTON = Button(image=pygame.image.load("game/assets/Quit Rect.png"), pos=(550, 530), 
+            QUIT_BUTTON = Button(image=pygame.image.load("Grupo2CO5Mod2/game/assets/Quit Rect.png"), pos=(550, 530), 
                                 text_input="QUIT", font=Menu.get_font(75), base_color="#d7fcd4", hovering_color="White")
 
             screen.blit(MENU_TEXT, MENU_RECT)

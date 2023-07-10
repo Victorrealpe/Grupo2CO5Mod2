@@ -25,6 +25,8 @@ CORAZON = pygame.transform.scale(CORAZON_scale, (70, 90))
 BOMB_scale = pygame.image.load(os.path.join(IMG_DIR, 'Other/BOMB.png'))
 BOMB = pygame.transform.scale(BOMB_scale, (60, 70))
 
+ICE_scale = pygame.image.load(os.path.join(IMG_DIR, 'Other/ICE.png'))
+ICE = pygame.transform.scale(ICE_scale, (60, 70))
 
 
 
@@ -34,6 +36,7 @@ HEART_TYPE = "heart"
 SHIELD_TYPE = 'shield'
 HEART_TYPE = 'heart'
 BOMB_TYPE = 'bomb'
+ICE_TYPE = 'ice'
 
 
 SPACESHIP = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship.png"))
@@ -62,6 +65,10 @@ SOUND_MUERTE = os.path.join(IMG_DIR, "Sound/SONIDO_MUERTE.wav")
 
 #BOMBA
 SOUND_BOMB = os.path.join(IMG_DIR, "Sound/MUSIC_BOMB.wav")
+
+#ICE
+SOUND_ICE = os.path.join(IMG_DIR, "Sound/MUSIC_ICE.flac")
+
 
 
 

@@ -3,8 +3,9 @@ import pygame
 from game.components.power_ups.shield import Shield
 from game.components.power_ups.power_heart import Heart
 from game.components.power_ups.power_bomb import Bomb
+from game.components.power_ups.power_ice import Ice
 
-from game.utils.constants import SPACESHIP_SHIELD,SHIELD_TYPE,HEART_TYPE,SPACESHIP,BOMB_TYPE
+from game.utils.constants import SPACESHIP_SHIELD,SHIELD_TYPE,HEART_TYPE,SPACESHIP,BOMB_TYPE, ICE_TYPE
 
 
 class PowerUpManager:
@@ -43,6 +44,11 @@ class PowerUpManager:
                     game.player.set_image((40, 60), nave)
                     self.power_ups.remove(power_up)
 
+                elif game.player.power_up_type == ICE_TYPE:
+                    nave = SPACESHIP
+                    game.player.set_image((40, 60), nave)
+                    self.power_ups.remove(power_up)
+
                 else:
                     game.player.set_image((65, 75))
                     self.power_ups.remove(power_up)
@@ -57,8 +63,10 @@ class PowerUpManager:
         power_up = Shield()
         power_heart = Heart()
         power_bomb = Bomb()
-        power_selec = [power_up,power_heart,power_bomb]
-        power_random = power_selec[random.randint(0,2)]
+        power_ice = Ice()
+        
+        power_selec = [power_up,power_heart,power_bomb,power_ice]
+        power_random = power_selec[random.randint(2,3)]
         self.when_appears += random.randint(5000, 10000)
 
 

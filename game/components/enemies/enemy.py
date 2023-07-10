@@ -2,7 +2,7 @@ import random
 import pygame
 from pygame.sprite import Sprite
 from game.components.bullets.bullet import Bullet
-from game.utils.constants import ENEMY_1, ENEMY_2, SCREEN_HEIGHT, SCREEN_WIDTH
+from game.utils.constants import ENEMY_1, ENEMY_2, SCREEN_HEIGHT, SCREEN_WIDTH, ICE_TYPE
 
 
 class Enemy(Sprite):
@@ -34,12 +34,16 @@ class Enemy(Sprite):
      
 
     def update(self, ships, game):
+
         self.rect.y += self.speed_y
 
         if self.movement_x == 'left':
             self.rect.x -= self.speed_x
         else:
             self.rect.x += self.speed_x
+
+            
+
         
         self.change_movement_x()
 
@@ -83,6 +87,14 @@ class Enemy(Sprite):
         elif (self.index >= self.move_x_for and self.movement_x == 'left') or (self.rect.x <=10):
             self.movement_x = 'right'
             self.index = 0
+
+    def stop_movement(self):
+        self.speed_y = 0
+        self.speed_x = 0
+        self.rect.y = self.rect.y
+        self.rect.x = self.rect.x
+        self.shoot_num = 0
+        print("entro a detenerse")  # Puedes ajustar esto según tus necesidades
     
     def shoot(self, bullet_Manager):
         current_time = pygame.time.get_ticks()

@@ -1,9 +1,10 @@
 import pygame
 from game.components.bullets.bullet_manager import BulletManager
 from game.components.enemies.enemy_manager import EnemyManager
+from game.components.enemies.enemy import Enemy
 from game.components.menu import Menu
 from game.components.power_ups.power_up_manager import PowerUpManager
-from game.utils.constants import BG, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, SOUND_BASE, HEART_TYPE,BOMB_TYPE, SOUND_BOMB
+from game.utils.constants import BG, FONT_STYLE, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, SOUND_BASE, HEART_TYPE,BOMB_TYPE, SOUND_BOMB, ICE_TYPE, SOUND_ICE
 from game.components.spaceship import Spaceship
 from game.components.heart import Heart 
 
@@ -21,6 +22,7 @@ class Game:
         self.y_pos_bg = 0
         self.player = Spaceship()
         self.enemy_manager = EnemyManager()
+        self.enemy = Enemy()
         self.bullet_manager = BulletManager()
         self.power_up_manager = PowerUpManager()
         self.death_count = 0
@@ -117,7 +119,6 @@ class Game:
     
 
         if self.death_count > 0 and self.playing == False:
-            #self.menu.update_message(f'Score: {str(self.score)}    '+ f'Death: {str(self.death_count)}    ' + f'High Score: {str(self.high_score)}', self.screen, self)
             self.menu.update_message(mensajes, self.screen, self)
         else:
             self.menu.main_menu(self.screen,self)
@@ -176,6 +177,13 @@ class Game:
                 text = font.render(f'{str(self.player.power_up_type).capitalize()} is enable for {time_to_show} seconds', True, (255,255,255))
                 text_rect = text.get_rect()
                 self.screen.blit(text,(540, 50))
+
+            elif self.player.has_power_up and self.player.power_up_type == ICE_TYPE:
+                font = pygame.font.Font(FONT_STYLE, 30)
+                text = font.render(f'{str(self.player.power_up_type).capitalize()} is enable for {time_to_show} seconds', True, (255,255,255))
+                text_rect = text.get_rect()
+                self.screen.blit(text,(540, 50))
+
             else:
                 self.player_has_power_up = False
                 self.player.power_up_type = DEFAULT_TYPE
@@ -207,6 +215,19 @@ class Game:
                 if conteo_enemis == 0:
                     self.player.has_power_up = False
                     self.enemy_manager.reset()
+
+        if self.player.has_power_up and self.player.power_up_type == ICE_TYPE:
+            sound_ice = pygame.mixer.Sound(SOUND_ICE)
+            pygame.mixer.Sound.play(sound_ice)
+
+            for enemy in self.enemy_manager.enemies:
+                enemy.stop_movement()
+
+            self.player.has_power_up = False
+
+
+
+
 
             
 

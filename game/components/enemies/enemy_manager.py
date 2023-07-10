@@ -17,6 +17,7 @@ class EnemyManager:
             self.enemy_count += 1
             self.add_enemy(self.enemy_count)
             self.last_enemy_time = current_time
+            
 
 
     def draw (self, screen):
