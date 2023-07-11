@@ -222,6 +222,11 @@ class Game:
 
             for enemy in self.enemy_manager.enemies:
                 enemy.stop_movement()
+                enemy.stop_shoot()
+
+            self.bullet_manager.enemy_bullets = []
+            #for bullet in self.bullet_manager.enemy_bullets:
+             #   self.bullet_manager.enemy_bullets.remove(bullet)
 
             self.player.has_power_up = False
 

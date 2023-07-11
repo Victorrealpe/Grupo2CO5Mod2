@@ -95,6 +95,13 @@ class Enemy(Sprite):
         self.rect.x = self.rect.x
         self.shoot_num = 0
         print("entro a detenerse")  # Puedes ajustar esto según tus necesidades
+
+    def stop_shoot(self):
+        self.shoot_num = 0
+        for bullet in self.bullets:
+            self.bullets.remove(bullet)
+        self.bullets = []
+
     
     def shoot(self, bullet_Manager):
         current_time = pygame.time.get_ticks()
