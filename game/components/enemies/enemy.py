@@ -31,6 +31,7 @@ class Enemy(Sprite):
         self.shooting_time = random.randint(30, 50)
         self.bullets = []
         self.shoot_num = 0
+        self.control_dis = True
      
 
     def update(self, ships, game):
@@ -51,8 +52,11 @@ class Enemy(Sprite):
         #game.bullet_manager.add_bullet(self.shoot(game.bullet_manager)) 2
 
         bullet = self.shoot(game.bullet_manager)
-        if bullet is not None:
+        if bullet is not None and self.control_dis == True:
             game.bullet_manager.add_bullet(bullet)
+
+        if self.control_dis == False:
+            game.bullet_manager.enemy_bullets = []
 
         #LOGICA DE BAJAR VIDA AL LLEGAR AL FINAL
 
@@ -93,14 +97,13 @@ class Enemy(Sprite):
         self.speed_x = 0
         self.rect.y = self.rect.y
         self.rect.x = self.rect.x
-        self.shoot_num = 0
-        print("entro a detenerse")  # Puedes ajustar esto según tus necesidades
 
     def stop_shoot(self):
-        self.shoot_num = 0
-        for bullet in self.bullets:
-            self.bullets.remove(bullet)
-        self.bullets = []
+        self.control_dis = False
+        print("entro a balas")
+
+    def ready_shoot(self):
+        self.control_dis = True
 
     
     def shoot(self, bullet_Manager):
