@@ -29,8 +29,21 @@ class Spaceship(Sprite):
 
         if user_input[pygame.K_LEFT]:
             self.move_left()
+            if user_input[pygame.K_UP]:
+                self.move_up()
+            if user_input[pygame.K_DOWN]:
+                self.move_down()
+                
+
+
         elif user_input[pygame.K_RIGHT]:
             self.move_right()
+            if user_input[pygame.K_UP]:
+                self.move_up()
+            if user_input[pygame.K_DOWN]:
+                self.move_down()
+
+
         elif user_input[pygame.K_UP]:
             self.move_up()
         elif user_input[pygame.K_DOWN]:
