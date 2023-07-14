@@ -66,7 +66,7 @@ class PowerUpManager:
         power_ice = Ice()
         
         power_selec = [power_up,power_heart,power_bomb,power_ice]
-        power_random = power_selec[random.randint(2,3)]
+        power_random = power_selec[random.randint(0,3)]
         self.when_appears += random.randint(5000, 10000)
 
 

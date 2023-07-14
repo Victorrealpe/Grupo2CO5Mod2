@@ -96,15 +96,6 @@ class Game:
         self.y_pos_bg += self.game_speed
 
 
-
-
-
-
-
-
-
-
-
     def show_menu(self):
         half_screen_width = SCREEN_WIDTH // 2
         half_screen_height = SCREEN_HEIGHT //2
@@ -130,16 +121,6 @@ class Game:
 
         self.menu.draw(self.screen)
         self.menu.update(self)
-
-
-
-
-
-
-
-
-
-
 
         
     def update_score(self):
@@ -178,7 +159,7 @@ class Game:
                 text_rect = text.get_rect()
                 self.screen.blit(text,(540, 50))
 
-            elif self.player.has_power_up and self.player.power_up_type == ICE_TYPE:
+            elif self.player.has_power_up and self.player.power_up_type == ICE_TYPE and time_to_show >=0:
                 font = pygame.font.Font(FONT_STYLE, 30)
                 text = font.render(f'{str(self.player.power_up_type).capitalize()} is enable for {time_to_show} seconds', True, (255,255,255))
                 text_rect = text.get_rect()
@@ -202,7 +183,6 @@ class Game:
 
         if self.player.has_power_up and self.player.power_up_type == BOMB_TYPE:
 
-            #self.enemy_manager.reset()
             sound_bomb= pygame.mixer.Sound(SOUND_BOMB)
             #sound_bomb.set_volume(0.9) #CONTROL DE VOLUMEN
             pygame.mixer.Sound.play(sound_bomb)
@@ -223,14 +203,11 @@ class Game:
             for enemy in self.enemy_manager.enemies:
                 enemy.stop_movement()
                 enemy.stop_shoot()
-
-
-
-            #self.player.has_power_up = False
         
         else:
             for enemy in self.enemy_manager.enemies:
                 enemy.ready_shoot()
+                enemy.ready_movement()
 
 
 

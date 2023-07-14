@@ -43,13 +43,8 @@ class Enemy(Sprite):
         else:
             self.rect.x += self.speed_x
 
-            
-
         
         self.change_movement_x()
-
-        #self.shoot(game.bullet_manager) 1
-        #game.bullet_manager.add_bullet(self.shoot(game.bullet_manager)) 2
 
         bullet = self.shoot(game.bullet_manager)
         if bullet is not None and self.control_dis == True:
@@ -100,10 +95,14 @@ class Enemy(Sprite):
 
     def stop_shoot(self):
         self.control_dis = False
-        print("entro a balas")
 
     def ready_shoot(self):
         self.control_dis = True
+
+    def ready_movement(self):
+        self.speed_y = 1
+        self.speed_x = 3
+
 
     
     def shoot(self, bullet_Manager):
