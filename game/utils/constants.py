@@ -69,6 +69,10 @@ SOUND_BOMB = os.path.join(IMG_DIR, "Sound/MUSIC_BOMB.wav")
 #ICE
 SOUND_ICE = os.path.join(IMG_DIR, "Sound/MUSIC_ICE.flac")
 
+#SONIDO DE BOTONES
+SOUND_BUTTON = os.path.join(IMG_DIR, "Sound/MUSIC_BUTTON.mp3")
+
+
 
 
 

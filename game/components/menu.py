@@ -1,5 +1,5 @@
 import pygame
-from game.utils.constants import FONT_STYLE, SCREEN_HEIGHT, SCREEN_WIDTH, BG_MENU
+from game.utils.constants import FONT_STYLE, SCREEN_HEIGHT, SCREEN_WIDTH, BG_MENU, SOUND_BUTTON
 from game.components.button import Button
 import pygame, sys
 
@@ -57,6 +57,10 @@ class Menu:
 
     def reset_screen_color(self, screen):
         screen.blit(BG_MENU,(0,0))
+
+    def sonido_boton(self):
+        sound_button= pygame.mixer.Sound(SOUND_BUTTON)
+        pygame.mixer.Sound.play(sound_button)
      
 
 
@@ -94,14 +98,17 @@ class Menu:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                self.sonido_boton()
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    self.sonido_boton()
                     game.run()
                     self.menu_back = False
              
                 if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                    self.sonido_boton()
                     self.menu_back = True
                     Menu.main_menu(self, screen, game)
             
@@ -138,18 +145,25 @@ class Menu:
                 button.update(screen)
             
             for event in pygame.event.get():
+                
                 if event.type == pygame.QUIT:
+                    self.sonido_boton()
                     pygame.quit()
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
+                        self.sonido_boton()
                         game.run()
                         self.menu_back = False 
                         
                     if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
                         #options()
+                        self.sonido_boton()
                         pass
                     if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                        self.sonido_boton()
+                        pygame.time.delay(700)
+                            
                         game.playing = False
                         game.running = False
                         pygame.quit()
